@@ -15,13 +15,20 @@ yargs(hideBin(process.argv))
             describe: " File to add to the staging area",
             type : "string",
         });
-    } , addRepo )
+    }, 
+        (argv) => {
+            addRepo(argv.file);
+        } )
+        
     .command("commit <message>" , "Commit the staged files" , (yargs) => {
         yargs.positional("message",{
             describe: "Commit message",
             type: "string",
             })
-    }, commitRepo)
+    }, 
+    (argv) => {
+        commitRepo(argv.message);
+    })
     .command("push","Push commands to S3", {} , pushRepo)
     .command("pull", "Pull commits from S3", {} , pullRepo)
     .command(
@@ -32,7 +39,8 @@ yargs(hideBin(process.argv))
                 describe : "commit Id to revert to",
                 type : "string",
             })
-        } , revertRepo
+        },  revertRepo, 
+        
 
     )
 
