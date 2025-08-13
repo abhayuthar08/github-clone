@@ -2,7 +2,6 @@ const fs = require('fs').promises;
 const path = require('path');
 const { v4:uuidv4 } = require("uuid");
 
-
 async function commitRepo(message) {
     const repoPath = path.resolve(process.cwd(), "apnaGit");
     const stagedPath = path.join(repoPath , "staging");
